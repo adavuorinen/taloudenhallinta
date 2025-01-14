@@ -12,7 +12,7 @@ function ItemForm(props) {
         storedValues.amount = parseFloat(storedValues.amount)
         storedValues.id = storedValues.id ? storedValues.id : crypto.randomUUID()
         props.onItemSubmit(storedValues)
-        navigate('/')
+        navigate(-1)
       }    
 
     const initialState = props.formData ? props.formData : {
@@ -27,9 +27,14 @@ function ItemForm(props) {
     const {values, handleChange, handleSubmit } = useForm(submit, initialState, false)
 
     const handleCancel = () => {
-        navigate('/')
+        navigate(-1)
     }
-    
+
+    const handleDelete = () => {
+      props.onItemDelete(values.id)
+      navigate(-1)
+    }
+  
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -86,6 +91,14 @@ function ItemForm(props) {
               </Button>
             </div>
           </div>
+          { props.onItemDelete ? 
+            <div className={styles.itemform_row}>
+              <div>
+                <Button secondary onClick={handleDelete}>POISTA</Button>
+              </div>
+              <div></div>
+            </div>
+            : null }
         </div>
       </form>
     </div>
