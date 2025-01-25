@@ -85,7 +85,7 @@ function ItemForm(props) {
                       disabled={values.type &&
                                 values.amount &&
                                 values.paymentDate &&
-                                values.receiver ? "" : "true"}
+                                values.receiver ? "" : "disabled"}
                       type='submit'>
                 { props.formData ? "TALLENNA" : "LISÄÄ" }
               </Button>
